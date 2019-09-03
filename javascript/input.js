@@ -1,14 +1,21 @@
+import Game from "./game.js";
+
 export default class InputHandler {
-  constructor(paddle) {
+  constructor(paddle, Game) {
     document.addEventListener("keydown", event => {
-      const key = event.key;
-      switch (key) {
-        case "ArrowLeft":
+      switch (event.keyCode) {
+        case 37:
           paddle.moveLeft();
           break;
-        case "ArrowRight":
+        case 39:
           paddle.moveRight();
           break;
+          case 27:
+            Game.togglePause();
+            break;
+            case 32:
+              Game.start();
+              break;
       }
     });
     document.addEventListener("keyup", event => {
