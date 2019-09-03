@@ -1,11 +1,23 @@
 #gameScreen{
     border: 1px solid black;
+    background: url("/assests/images/bad-bunny-back.jpg");
 }
 
 #ball_img {
     display: none;
 }
 
+#paused_img {
+    display: none;
+}
+
 #brick_img {
     display: none;
+}
+#start_img {
+    display: none;
+}
+
+#gameover_img {
+    display:none;
 }
