@@ -1,20 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title></title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="css/style.css" rel="stylesheet">
-    </head>
-    <body>
-        <img id= "ball_img" src="assests/images/bad-bunny-logo.png" alt="ball">
-        <img id="brick_img" src="assests/images/bad-bunny-hood.png" alt="hood">
-        <img id="paused_img" src="assests/images/paused-logo.png" alt="pause">
-        <img id="start_img" src="assests/images/bad-start.jpg" alt="start">
-        <img id="gameover_img" src="assests/images/tenor.jpg" alt="gameover">
-<canvas id="gameScreen" height="600" width="800"></canvas>
+
+<head>
+    <title>Bunny Breaker</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- <iframe width="0" height="0" src="assests/sound/song.mp3" frameborder="0" allowfullscreen></iframe> -->
+    <audio id="myAudio">
+        <source src="assests/sound/song.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+    <audio id="myAudio1">
+        <source src="assests/sound/Will Smith Bad Bunny Ba Ba Ba.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
 
 
-        <script type="module" src="javascript/script.js"></script>
-    </body>
+    <p id="livesLeft"></p>
+
+
+    <img id="ball_img" src="assests/images/bad-bunny-logo.png" alt="ball">
+    <img id="brick_img" src="assests/images/bad-bunny-hood.png" alt="hood">
+    <img id="paused_img" src="assests/images/paused-logo.png" alt="pause">
+    <img id="start_img" src="assests/images/bad-start.jpg" alt="start">
+    <img id="gameover_img" src="assests/images/tenor.jpg" alt="gameover">
+    <img id="carrot_img" src="assests/images/carrot.jpg" alt="gameover">
+    <canvas id="gameScreen" height="600" width="800"></canvas>
+
+
+    <script type="module" src="javascript/script.js"></script>
+</body>
+
 </html>

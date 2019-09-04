@@ -13,9 +13,10 @@ export default class Paddle {
 
 
 draw(ctx){
-    ctx.fillStyle = "blue";
+    ctx.fillStyle = "orange";
     ctx.fillRect(this.position.x, this.position.y, this.width, this.height)
-
+    
+    
 }
 moveLeft(){
     this.speed = -this.maxSpeed;

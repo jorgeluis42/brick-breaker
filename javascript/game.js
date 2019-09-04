@@ -2,7 +2,7 @@ import Paddle from "./paddle.js";
 import InputHandler from "./input.js";
 import Ball from "./ball.js"
 import Brick from "./brick.js"
-import {buildLevel, level1, level2} from "./levels.js"
+import { buildLevel, level1, level2 } from "./levels.js"
 
 const GAMESTATE = {
     PAUSED: 0,
@@ -12,84 +12,90 @@ const GAMESTATE = {
     NEWLEVEL: 4
 }
 export default class Game {
-    constructor(gamewidth, gameheight){
+    constructor(gamewidth, gameheight) {
         this.gamewidth = gamewidth;
         this.gameheight = gameheight;
         this.gamestate = GAMESTATE.MENU;
         this.ball = new Ball(this);
-         this.paddle = new Paddle(this);
-         this.gameObjects = [];
-         this.bricks = [];
-         this.lives = 1;
+        this.paddle = new Paddle(this);
+        this.gameObjects = [];
+        this.bricks = [];
+        this.lives = 3;
+        //  document.getElementById('livesLeft').innerHTML = this.lives
 
-         this.levels = [level1, level2];
-         this.currentlevel = 0;
-new InputHandler(this.paddle, this);
+        this.levels = [level1, level2];
+        this.currentlevel = 0;
+
+        new InputHandler(this.paddle, this);
     }
-    start(){
-       if(this.gamestate !== GAMESTATE.MENU && this.gamestate != GAMESTATE.NEWLEVEL)
-       return;
+    start() {
+        if (this.gamestate !== GAMESTATE.MENU && this.gamestate != GAMESTATE.NEWLEVEL)
+            return;
 
-     this.bricks = buildLevel(this, this.levels[this.currentlevel]);
-      
-         
-this.ball.reset()
- this.gameObjects = [this.ball, this.paddle];
+        this.bricks = buildLevel(this, this.levels[this.currentlevel]);
 
-this.gamestate = GAMESTATE.RUNNING;
+
+        this.ball.reset()
+        this.gameObjects = [this.ball, this.paddle];
+
+        this.gamestate = GAMESTATE.RUNNING;
 
 
     }
-    update(deltaTime){
-        if(this.lives === 0) this.gamestate = GAMESTATE.GAMEOVER
-        if(this.gamestate === GAMESTATE.PAUSED || this.gamestate === GAMESTATE.MENU || this.gamestate === GAMESTATE.GAMEOVER) return;
+    update(deltaTime) {
+        if (this.lives === 0) this.gamestate = GAMESTATE.GAMEOVER
+        if (this.gamestate === GAMESTATE.PAUSED || this.gamestate === GAMESTATE.MENU || this.gamestate === GAMESTATE.GAMEOVER) return;
 
-        if(this.bricks.length === 0){
-            this.currentlevel ++;
+        if (this.bricks.length === 0) {
+            this.currentlevel++;
             this.gamestate = GAMESTATE.NEWLEVEL;
             this.start();
         }
-       [...this.gameObjects, ...this.bricks] 
-        .forEach(object => object.update(deltaTime));
-        this.bricks = this.bricks.filter(brick => !brick.markedForDeletion )
+        [...this.gameObjects, ...this.bricks]
+            .forEach(object => object.update(deltaTime));
+        this.bricks = this.bricks.filter(brick => !brick.markedForDeletion)
+        document.getElementById('livesLeft').innerHTML = 'Lives Left: ' + this.lives
     }
-    draw(ctx){
-       [...this.gameObjects,...this.bricks].forEach(object => object.draw(ctx));
-if(this.gamestate === GAMESTATE.PAUSED){
-    var pauseimg = document.getElementById("paused_img");
-        var pat = ctx.createPattern(pauseimg, "no-repeat");
-    ctx.rect(1,1, this.gamewidth, this.gameheight)
-    ;
-    ctx.fillStyle = pat;
-    ctx.fill();
-    
-    }
-    if(this.gamestate === GAMESTATE.MENU){
-        var startimg = document.getElementById("start_img");
-        var start = ctx.createPattern(startimg, "repeat");
-    ctx.rect(1, 1, this.gamewidth, this.gameheight);
-    ctx.fillStyle = start;
-    ctx.fill();
-     }
-     if(this.gamestate === GAMESTATE.GAMEOVER){
-        var overimg = document.getElementById("gameover_img");
-        var over = ctx.createPattern(overimg, "repeat");
-    ctx.rect(1, 1, this.gamewidth,this.gameheight);
-    ctx.fillStyle = over;
-    ctx.fill();
-     
-        ctx.font = "30px Times New Roman";
-        ctx.fillStyle = "black";
-        ctx.textAlign = "left";
-        ctx.fillText("🐰GAMEOVER🐰", this.gamewidth / 3, this.gameheight /2)
-     }
-}
+    draw(ctx) {
+        [...this.gameObjects, ...this.bricks].forEach(object => object.draw(ctx));
+        if (this.gamestate === GAMESTATE.PAUSED) {
+            var pauseimg = document.getElementById("paused_img");
+            var pat = ctx.createPattern(pauseimg, "no-repeat");
+            ctx.rect(1, 1, this.gamewidth, this.gameheight)
+                ;
+            ctx.fillStyle = pat;
+            ctx.fill();
 
-    togglePause(){
-if(this.gamestate == GAMESTATE.PAUSED){
-    this.gamestate = GAMESTATE.RUNNING;
-} else {
-    this.gamestate = GAMESTATE.PAUSED;
-}
+        }
+        if (this.gamestate === GAMESTATE.MENU) {
+            var startimg = document.getElementById("start_img");
+            var start = ctx.createPattern(startimg, "repeat");
+            ctx.rect(1, 1, this.gamewidth, this.gameheight);
+            ctx.fillStyle = start;
+            ctx.fill();
+        }
+        if (this.gamestate === GAMESTATE.GAMEOVER) {
+            var overimg = document.getElementById("gameover_img");
+            var over = ctx.createPattern(overimg, "repeat");
+            ctx.rect(1, 1, this.gamewidth, this.gameheight);
+            ctx.fillStyle = over;
+            ctx.fill();
+            ctx.font = "30px Times New Roman";
+            ctx.fillStyle = "black";
+            ctx.textAlign = "left";
+            ctx.fillText("🐰GAMEOVER🐰", this.gamewidth / 3, this.gameheight / 2)
+        }
+    }
+
+    togglePause() {
+        document.getElementById("myAudio").pause();
+        document.getElementById("myAudio1").play();
+        if (this.gamestate == GAMESTATE.PAUSED) {
+            this.gamestate = GAMESTATE.RUNNING;
+            document.getElementById("myAudio1").pause();
+            document.getElementById("myAudio").play();
+        } else {
+            this.gamestate = GAMESTATE.PAUSED;
+        }
     }
 }

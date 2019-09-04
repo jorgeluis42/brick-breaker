@@ -14,6 +14,7 @@ export default class InputHandler {
             game.togglePause();
             break;
             case 32:
+                document.getElementById("myAudio").play();
               game.start();
               break;
       }

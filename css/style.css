@@ -1,23 +1,59 @@
-#gameScreen{
-    border: 1px solid black;
-    background: url("/assests/images/bad-bunny-back.jpg");
+#gameScreen {
+  border: 1px solid black;
+  background: url("/assests/images/bad-bunny-back.jpg");
+}
+
+canvas {
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  width: 800px;
+}
+
+canvas.level1 {
+  animation: spin 7s infinite;
+}
+
+/*document.getElementById('gameScreen').className = 'level1'*/
+
+@keyframes spin {
+  to {
+    transform: rotateY(0deg);
+  }
+  from {
+    transform: rotateY(360deg);
+  }
+}
+
+html {
+  background-color: pink;
+}
+
+#livesLeft {
+  display: flex;
+  justify-content: center;
+  font-size: 50px;
 }
 
 #ball_img {
-    display: none;
+  display: none;
 }
 
 #paused_img {
-    display: none;
+  display: none;
 }
 
 #brick_img {
-    display: none;
+  display: none;
 }
 #start_img {
-    display: none;
+  display: none;
 }
-
+#carrot_img {
+  display: none;
+}
 #gameover_img {
-    display:none;
+  display: none;
 }

@@ -1,50 +1,50 @@
-import {detectCollision} from "./collisionDetection.js"
+import { detectCollision } from "./collisionDetection.js"
 export default class Ball {
-constructor(game){
-    this.image = document.getElementById("ball_img");
+    constructor(game) {
+        this.image = document.getElementById("ball_img");
 
-    this.gamewidth = game.gamewidth;
-    this.gameheight = game.gameheight;
+        this.gamewidth = game.gamewidth;
+        this.gameheight = game.gameheight;
 
-    this.game = game;   
-    this.size =40;
-    this.reset();
-}
-reset(){
-    this.position = {x:10, y:400};
-    this.speed = {x:2, y:-2};
-}
+        this.game = game;
+        this.size = 40;
+        this.reset();
+    }
+    reset() {
+        this.position = { x: 10, y: 400 };
+        this.speed = { x: 4, y: -4 };
+    }
 
 
-draw(ctx){
-    ctx.drawImage(
-        this.image, 
-        this.position.x, 
-        this.position.y, 
-        this.size, 
-        this.size
+    draw(ctx) {
+        ctx.drawImage(
+            this.image,
+            this.position.x,
+            this.position.y,
+            this.size,
+            this.size
         );
-}
+    }
 
 
-update(deltaTime){
-this.position.x += this.speed.x;
-this.position.y += this.speed.y;
+    update(deltaTime) {
+        this.position.x += this.speed.x;
+        this.position.y += this.speed.y;
 
-if (this.position.x + this.size > this.gamewidth || this.position.x < 0) {
-    this.speed.x = -this.speed.x;
-}
-if (this.position.y < 0) {
-    this.speed.y = -this.speed.y;
-}
+        if (this.position.x + this.size > this.gamewidth || this.position.x < 0) {
+            this.speed.x = -this.speed.x;
+        }
+        if (this.position.y < 0) {
+            this.speed.y = -this.speed.y;
+        }
 
-if(this.position.y + this.size > this.gameheight){
-    this.game.lives--;
-    this.reset()
-}
-if (detectCollision(this, this.game.paddle)) {
-    this.speed.y = -this.speed.y;
-    this.position.y = this.game.paddle.position.y - this.size;
-  }
-}
+        if (this.position.y + this.size > this.gameheight) {
+            this.game.lives--;
+            this.reset()
+        }
+        if (detectCollision(this, this.game.paddle)) {
+            this.speed.y = -this.speed.y;
+            this.position.y = this.game.paddle.position.y - this.size;
+        }
+    }
 }
