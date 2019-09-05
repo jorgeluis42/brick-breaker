@@ -1,6 +1,6 @@
 #gameScreen {
   border: 1px solid black;
-  background: url("./assests/images/bad-bunny-back.jpg");
+  background: url("../assests/images/bad-bunny-back.jpg");
 }
 body {
   background-color: pink;
