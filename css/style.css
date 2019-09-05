@@ -31,10 +31,31 @@ html {
   background-color: pink;
 }
 
+body {
+  display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 #livesLeft {
   display: flex;
   justify-content: center;
-  font-size: 50px;
+  font-size: 40px;
+}
+
+#playAgain{
+  display:none;
+  background-color: #c1f6e7;
+  border-radius: 8px;
+  border-color: transparent;
+  height: 30px;
+  width: 200px;
+  padding: 2px;
+
+
+}
+#win_img {
+  display:none;
 }
 
 #ball_img {
