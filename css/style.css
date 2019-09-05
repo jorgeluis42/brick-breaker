@@ -1,8 +1,10 @@
 #gameScreen {
   border: 1px solid black;
-  background: url("/assests/images/bad-bunny-back.jpg");
+  background: url("./assests/images/bad-bunny-back.jpg");
 }
-
+body {
+  background-color: pink;
+}
 canvas {
   padding-left: 0;
   padding-right: 0;
@@ -12,24 +14,21 @@ canvas {
   width: 800px;
 }
 
-canvas.level1 {
+/* canvas.level1 {
   animation: spin 7s infinite;
 }
 
 /*document.getElementById('gameScreen').className = 'level1'*/
 
-@keyframes spin {
+/* @keyframes spin {
   to {
     transform: rotateY(0deg);
   }
   from {
     transform: rotateY(360deg);
   }
-}
+} */ *
 
-html {
-  background-color: pink;
-}
 
 body {
   display: flex;
