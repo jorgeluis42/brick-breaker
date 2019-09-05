@@ -1,6 +1,6 @@
 #gameScreen {
   border: 1px solid black;
-  background: url("/assests/images/bad-bunny-back.jpg");
+  background: url("./assests/images/bad-bunny-back.jpg");
 }
 body {
   background-color: pink;
@@ -27,13 +27,11 @@ canvas {
   from {
     transform: rotateY(360deg);
   }
-} */ *
-
-
-body {
+} */
+* body {
   display: flex;
-    flex-direction: column;
-    align-items: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 #livesLeft {
@@ -42,19 +40,17 @@ body {
   font-size: 40px;
 }
 
-#playAgain{
-  display:none;
+#playAgain {
+  display: none;
   background-color: #c1f6e7;
   border-radius: 8px;
   border-color: transparent;
   height: 30px;
   width: 200px;
   padding: 2px;
-
-
 }
 #win_img {
-  display:none;
+  display: none;
 }
 
 #ball_img {
