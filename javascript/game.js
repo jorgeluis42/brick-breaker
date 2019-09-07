@@ -10,7 +10,8 @@ const GAMESTATE = {
     MENU: 2,
     GAMEOVER: 3,
     NEWLEVEL: 4,
-    GAMEWON: 5
+    GAMEWON: 5,
+    
 }
 export default class Game {
     constructor(gamewidth, gameheight) {
@@ -22,6 +23,7 @@ export default class Game {
         this.gameObjects = [];
         this.bricks = [];
         this.lives = 3;
+        this.score = 0
 
         this.levels = [level1, level2];
         this.currentlevel = 0;
@@ -57,6 +59,10 @@ export default class Game {
             .forEach(object => object.update(deltaTime));
         this.bricks = this.bricks.filter(brick => !brick.markedForDeletion)
         document.getElementById('livesLeft').innerHTML = 'Lives Left: ' + this.lives
+        if(this.bricks.filter(brick => brick.markedForDeletion)){
+            this.score++
+            document.getElementById('score').innerHTML = 'Score: ' + this.score
+          }
     }
     draw(ctx) {
         [...this.gameObjects, ...this.bricks].forEach(object => object.draw(ctx));
